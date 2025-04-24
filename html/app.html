@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riddle Machine</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: linear-gradient(to bottom right, #ffe0b2, #ffcc80);
+    }
+    header {
+      background: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ef6c00;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .titleheader{
+      padding: 5px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ef6c00;
+    }
+    header a {
+      position: absolute;
+      left: 1rem;
+      top: 1.2rem;
+      font-size: 1rem;
+      color: #ef6c00;
+      text-decoration: none;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .riddle-box {
+      background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-width: 500px;
+      text-align: center;
+    }
+    .riddle-question {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .riddle-answer {
+      color: green;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .primary {
+      background-color: #ef6c00;
+      color: white;
+    }
+    .outline {
+      background-color: white;
+      color: #ef6c00;
+      border: 2px solid #ef6c00;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="oranges.html">← Back to Oranges</a>
+    Riddle Machine
+  </header>
+
+  <div class="titleheader">
+  <h5>Good Freaking Luck</h5>
+  </div>
+
+  <main>
+    <div class="riddle-box" id="riddleBox">
+      <p id="question" class="riddle-question">Click below to generate a riddle!</p>
+      <p id="answer" class="riddle-answer" style="display: none;"></p>
+      <div>
+        <button class="primary" onclick="showAnswer()">Show Answer</button>
+        <button class="outline" onclick="generateRiddle()">New Riddle</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const riddles = [
+      { question: "What has to be broken before you can use it?", answer: "An egg" },
+      { question: "I’m tall when I’m young, and I’m short when I’m old. What am I?", answer: "A candle" },
+      { question: "What month of the year has 28 days?", answer: "All of them" },
+      { question: "What is full of holes but still holds water?", answer: "A sponge" },
+      { question: "What question can you never answer yes to?", answer: "Are you asleep yet?" }
+    ];
+
+    let currentRiddle = null;
+
+    function generateRiddle() {
+      currentRiddle = riddles[Math.floor(Math.random() * riddles.length)];
+      document.getElementById('question').textContent = currentRiddle.question;
+      document.getElementById('answer').style.display = 'none';
+    }
+
+    function showAnswer() {
+      if (currentRiddle) {
+        document.getElementById('answer').textContent = 'Answer: ' + currentRiddle.answer;
+        document.getElementById('answer').style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
